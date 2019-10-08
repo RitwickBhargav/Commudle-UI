@@ -21,13 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 "Communities",
                 style: Theme.of(context).textTheme.title,
               ),
-              Text(
-                "See All",
-                style: TextStyle(
-                    fontSize: 14.0,
-                    color: const Color(0xFFDB4437),
-                    fontWeight: FontWeight.w600),
-              ),
+              GestureDetector(
+                onTap: navigationPage,
+                child: Text(
+                  "See All",
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      color: const Color(0xFFDB4437),
+                      fontWeight: FontWeight.w600),
+                ),
+              )
             ],
           ),
         ),
@@ -69,18 +72,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 "My next event",
                 style: Theme.of(context).textTheme.title,
               ),
-              Text(
-                "Registered Events",
-                style: TextStyle(
-                    fontSize: 14.0,
-                    color: const Color(0xFF0F9D58),
-                    fontWeight: FontWeight.w600),
-              )
+              GestureDetector(
+                  onTap: navigationPage1,
+                  child: Text(
+                    "Registered Events",
+                    style: TextStyle(
+                        fontSize: 14.0,
+                        color: const Color(0xFF0F9D58),
+                        fontWeight: FontWeight.w600),
+                  ))
             ],
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0),
+          padding: EdgeInsets.only(left: 20.0, right: 20.0,),
           child: Container(
             child: ListView(
               physics: const NeverScrollableScrollPhysics(),
@@ -131,7 +136,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: () {
+        return new Future.value(true);
+      },
+      child: Scaffold(
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -158,6 +167,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+    )
     );
+  }
+
+  void navigationPage() {
+    Navigator.pushNamed(context, '/CommunitiesListScreen');
+  }
+  void navigationPage1() {
+    Navigator.pushNamed(context, '/RegisteredEventScreen');
   }
 }

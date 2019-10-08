@@ -61,11 +61,14 @@ class _AuthScreenState extends State<AuthScreen> {
               Expanded(
                 child: Align(
                   alignment: FractionalOffset.bottomCenter,
-                  child: Text(
+                  child: GestureDetector(
+                    onTap: navigationPage,
+                    child: Text(
                     "Skip >>",
                     style: Theme.of(context).textTheme.body1,
                   ),
                 ),
+                )
               ),
             ],
           ),
@@ -74,6 +77,7 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed('/HomeScreen');
+    Navigator.pushNamed(context, '/HomeScreen');
+    //Navigator.of(context).pushReplacementNamed('/HomeScreen');
   }
 }
